@@ -35,14 +35,13 @@ public class PlayerController : MonoBehaviour
 
     private bool isFaceRight = true;
     bool isGrounded;
-    bool isGrounded2;
     bool sjump = true;
     bool canClimbR = false;
-    bool canClimbR2 = false;
     bool canDash = true;
     bool isDashing = false;
     bool isEmirHoca = true;
     public bool isBlocking = false;
+    bool invIsActive = false;
 
     Rigidbody2D rb;
 
@@ -51,11 +50,12 @@ public class PlayerController : MonoBehaviour
     public LayerMask enemyLayers;
     public LayerMask layer;
 
-    public GameObject circle, circle2, circleR, circleR2, arrow, shootPointObj,cameraa;
+    public GameObject circle, circleR, arrow, shootPointObj,cameraa;
+    public GameObject inventory;
 
     Animator anim;
 
-    public Text currentXPText;
+    //public Text currentXPText;
 
     public Vector2 shootDirection;
 
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        currentXPText.text = Experience.instance.currentExperience.ToString() + "/" + Experience.instance.expToNextLevel.ToString();
+        //currentXPText.text = Experience.instance.currentExperience.ToString() + "/" + Experience.instance.expToNextLevel.ToString();
     }
 
 
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         dashCheck();
         AttackKnt();
         characterChange();
-
+        Shoot();
         arrowCheck();
     }
 
@@ -142,13 +142,13 @@ public class PlayerController : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             //enemy.GetComponent<EnemyStats>().takeDamage(tempDamage);
-            currentXPText.text = Experience.instance.currentExperience.ToString() + "/" + Experience.instance.expToNextLevel.ToString();
+            //currentXPText.text = Experience.instance.currentExperience.ToString() + "/" + Experience.instance.expToNextLevel.ToString();
         }
     }
 
     private void AttackKnt()
     {
-        if (Time.time > nextAttack && isGrounded && isGrounded2)
+        if (Time.time > nextAttack && isGrounded)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
     public void jump()
     {
-        if (isGrounded && isGrounded2)
+        if (isGrounded)
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
@@ -227,7 +227,7 @@ public class PlayerController : MonoBehaviour
 
     public void wallClimb()
     {
-        if (canClimbR || canClimbR2)
+        if (canClimbR)
         {
             if (Input.GetKey(KeyCode.W))
                 rb.velocity = new Vector2(0, climbSpeed);
@@ -241,17 +241,13 @@ public class PlayerController : MonoBehaviour
     public void surfaceCheck()
     {
         isGrounded = Physics2D.OverlapCircle(circle.transform.position, radius, layer);
-        isGrounded2 = Physics2D.OverlapCircle(circle2.transform.position, radius, layer);
         canClimbR = Physics2D.OverlapCircle(circleR.transform.position, radius, layer);
-        canClimbR2 = Physics2D.OverlapCircle(circleR2.transform.position, radius, layer);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(circle.transform.position, radius);
-        Gizmos.DrawWireSphere(circle2.transform.position, radius);
         Gizmos.DrawWireSphere(circleR.transform.position, radius);
-        Gizmos.DrawWireSphere(circleR2.transform.position, radius);
         Gizmos.DrawWireSphere(attackPoint.position, attackDistance);
     }
     private IEnumerator dash()
@@ -268,7 +264,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (isGrounded || isGrounded2)
+            if (isGrounded)
             {
                 canDash = false;
                 isDashing = true;
@@ -283,7 +279,7 @@ public class PlayerController : MonoBehaviour
 
     public void block()
     {
-        if (isEmirHoca && isGrounded && isGrounded2)
+        if (isEmirHoca && isGrounded)
         {
             if (Input.GetMouseButton(1))
             {
@@ -333,6 +329,20 @@ public class PlayerController : MonoBehaviour
             shootDirection = (mousePosition - shootPoint).normalized;
             Instantiate(arrow, shootPoint, Quaternion.identity);
             nextShoot = Time.time + 0.5f;
+        }
+    }
+
+    public void Shoot()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && !invIsActive)
+        {
+            inventory.SetActive(true);
+            invIsActive = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && invIsActive)
+        {
+            inventory.SetActive(false);
+            invIsActive = false;
         }
     }
 }
