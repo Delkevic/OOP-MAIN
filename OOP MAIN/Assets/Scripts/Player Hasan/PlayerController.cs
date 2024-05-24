@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         dashCheck();
         AttackKnt();
         characterChange();
-        Shoot();
+        InventoryIsActive();
         arrowCheck();
     }
 
@@ -332,7 +332,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Shoot()
+    public void InventoryIsActive ()
     {
         if (Input.GetKeyDown(KeyCode.E) && !invIsActive)
         {
