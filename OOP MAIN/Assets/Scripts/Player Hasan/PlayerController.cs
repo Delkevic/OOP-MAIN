@@ -25,9 +25,7 @@ public class PlayerController : MonoBehaviour
     public float attackRate = 2f;
     float nextAttack = 0f;
     float nextShoot = 0f;
-    float movementCheck;
     float dashTime = 0.3f;
-    float num = 0f;
     public float attackDistance;
     public float damage = 25f;
     public float tempDamage;
@@ -35,11 +33,11 @@ public class PlayerController : MonoBehaviour
     float changeTime = 2f;
 
     private bool isFaceRight = true;
+    bool isDashing = false;
     bool isGrounded;
     bool sjump = true;
     bool canClimbR = false;
     bool canDash = true;
-    bool isDashing = false;
     bool isEmirHoca = true;
     public bool isBlocking = false;
     bool invIsActive = false;
@@ -51,7 +49,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask enemyLayers;
     public LayerMask layer;
 
-    public GameObject circle, circleR, arrow,arrow2, shootPointObj,cameraa,bow,sword;
+    public GameObject circle, circleR, arrow, shootPointObj, cameraa, bow, sword;
     public GameObject inventory;
 
     Animator anim;
@@ -73,9 +71,10 @@ public class PlayerController : MonoBehaviour
     {
         if (GetComponent<PlayerHealth>().isDying == true)
             return;
-        block();
-        if (isBlocking)
+
+        if (isBlocking || isDashing)
             return;
+        StartCoroutine(block());
         wallClimb();
         CheckDirection();
         jump();
@@ -92,7 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerHealth.instance.isDying == true)
             return;
-        if (isBlocking)
+        if (isBlocking||isDashing)
             return;
         Movement();
     }
@@ -113,32 +112,22 @@ public class PlayerController : MonoBehaviour
     {
         if (canDash && Input.GetKeyDown(KeyCode.LeftShift) && !canClimbR)
         {
+            Debug.Log("dashCheck giriyor");
             StartCoroutine(dash());
         }
     }
 
     public void Attack()
     {
-        if (num != 3f && isEmirHoca)
-        {
-            anim.SetTrigger("atk1");
-            num++;
+        if (isEmirHoca)
             tempDamage = damage;
-        }
-        if (num == 3 && isEmirHoca)
-        {
-            anim.SetTrigger("atk2");
-            num = 0f;
-            tempDamage = damage * 1.5f;
-        }
-
         if (!isEmirHoca)
-        {
-            anim.SetTrigger("atk1");
             tempDamage = damage - 10;
-        }
+        anim.SetBool("atk1", true);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackDistance, enemyLayers);
+
+        StartCoroutine(Count());
 
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -253,48 +242,25 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator dash()
     {
-        if (!isEmirHoca)
-        {
             canDash = false;
-            isDashing = true;
             rb.gravityScale = 0f;
-            anim.SetBool("isDashing", true);
+            isDashing = true;
             rb.velocity = new Vector2(transform.localScale.x * 120, 0f);
             yield return new WaitForSeconds(dashTime / 2);
-            rb.gravityScale = 1f;
-            anim.SetBool("isDashing", false);
             isDashing = false;
-        }
-        else
-        {
-            if (isGrounded)
-            {
-                canDash = false;
-                isDashing = true;
-                anim.SetBool("isSliding", true);
-                rb.velocity = new Vector2(transform.localScale.x * 50f, rb.velocity.y);
-                yield return new WaitForSeconds(dashTime * 1.6f);
-                anim.SetBool("isSliding", false);
-                isDashing = false;
-            }
-        }
+            rb.gravityScale = 1f;
     }
 
-    public void block()
+    IEnumerator block()
     {
-        if (isEmirHoca && isGrounded)
+        if (isEmirHoca && isGrounded && Input.GetMouseButtonDown(1))
         {
-            if (Input.GetMouseButton(1))
-            {
-                isBlocking = true;
-                rb.velocity = Vector2.zero;
-                anim.SetBool("isBlocking", true);
-            }
-            else
-            {
-                isBlocking = false;
-                anim.SetBool("isBlocking", false);
-            }
+            isBlocking = true;
+            rb.velocity = Vector2.zero;
+            anim.SetBool("isBlocking", true);
+            yield return new WaitForSeconds(0.5f);
+            isBlocking = false;
+            anim.SetBool("isBlocking", false);
         }
     }
 
@@ -309,22 +275,16 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isBlocking", false);
         yield return new WaitForSeconds(3);
         canBlock = true;
-    }
-    private void blockCheck()
-    {
-        if (isEmirHoca && Input.GetMouseButtonDown(1) && canBlock && isGrounded&&isGrounded2)
-        {
-                StartCoroutine(block());
-        }
     }*/
 
     void arrowCheck()
     {
         if (!isEmirHoca && Input.GetMouseButtonDown(1) && Time.time > nextShoot)
         {
+            tempDamage -= 10;
             sword.SetActive(false);
             bow.SetActive(true);
-            anim.SetBool("arrow",true);
+            anim.SetBool("arrow", true);
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
             if (!isFaceRight && (mousePosition - shootPointObj.transform.position).normalized.x > 0)
@@ -335,7 +295,7 @@ public class PlayerController : MonoBehaviour
             }
             Vector3 shootPoint = shootPointObj.transform.position;
             shootDirection = (mousePosition - shootPoint).normalized;
-            if(transform.localScale.x > 0)
+            if (transform.localScale.x > 0)
             {
                 arrow.transform.localScale = new Vector3(-0.05f, 0.05f, 0.05f);
             }
@@ -351,11 +311,12 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("arrow", false);
+        anim.SetBool("atk1", false);
         bow.SetActive(false);
         sword.SetActive(true);
     }
 
-    public void InventoryIsActive ()
+    public void InventoryIsActive()
     {
         if (Input.GetKeyDown(KeyCode.E) && !invIsActive)
         {
@@ -371,6 +332,7 @@ public class PlayerController : MonoBehaviour
 
     public void characterThrow(float speed)
     {
+        rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + speed);
     }
 }

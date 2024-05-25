@@ -23,23 +23,20 @@ public class Arrow : MonoBehaviour
     }
 
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        /*if (collision.CompareTag("Enemy"))
         {
             collision.GetComponent<EnemyStats>().takeDamage(damage);
             Destroy(gameObject);
-        }
+        }*/
         if (collision.CompareTag("Ground"))
             Destroy(gameObject);
-    }*/
+    }
 
-    /*
     IEnumerator destroyTime()
     {
-        Debug.Log("selam");
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
-    */
 }
