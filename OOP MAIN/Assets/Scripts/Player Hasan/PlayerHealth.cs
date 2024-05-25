@@ -57,6 +57,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float a)
     {
+        Debug.Log("TakeDamage calisiyor");
         if(PlayerController.Instance.isBlocking)
             currentHealth -= a * ((defense + 40) / 100);
         else

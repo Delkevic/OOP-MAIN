@@ -10,6 +10,7 @@ TagManager:
   - point
   - water
   - Special Point
+  - Boss
   layers:
   - Default
   - TransparentFX
