@@ -257,7 +257,7 @@ public class PlayerController : MonoBehaviour
             canDash = false;
             isDashing = true;
             rb.gravityScale = 0f;
-            rb.velocity = new Vector2(transform.localScale.x * 9, 0f);
+            rb.velocity = new Vector2(transform.localScale.x * 200, 0f);
             yield return new WaitForSeconds(dashTime / 2);
             rb.gravityScale = 1f;
             isDashing = false;
@@ -269,7 +269,7 @@ public class PlayerController : MonoBehaviour
                 canDash = false;
                 isDashing = true;
                 anim.SetBool("isRolling", true);
-                rb.velocity = new Vector2(transform.localScale.x * 2.8f, rb.velocity.y);
+                rb.velocity = new Vector2(transform.localScale.x * 50f, rb.velocity.y);
                 yield return new WaitForSeconds(dashTime * 1.6f);
                 anim.SetBool("isRolling", false);
                 isDashing = false;
@@ -344,5 +344,10 @@ public class PlayerController : MonoBehaviour
             inventory.SetActive(false);
             invIsActive = false;
         }
+    }
+
+    public void characterThrow(float speed)
+    {
+        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + speed);
     }
 }

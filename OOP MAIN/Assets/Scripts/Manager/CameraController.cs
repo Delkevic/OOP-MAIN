@@ -22,8 +22,7 @@ public class CameraController : MonoBehaviour
     }
     void Start()
     {
-        PlayerController playerr = GameObject.Find("Player").GetComponent<PlayerController>();
-        player = playerr.gameObject.transform;
+        player = PlayerController.Instance.gameObject.transform;
         activeRoom = player;
     }
 

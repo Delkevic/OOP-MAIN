@@ -12,13 +12,10 @@ public class Arrow : MonoBehaviour
     void Start()
     {
         Vector2 vector2 = new Vector2(10f,10f);
-        PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
-        direction = player.shootDirection;
-        Debug.Log("direction: "+direction);
+        direction = PlayerController.Instance.shootDirection;
         //destroyTime();
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = direction*vector2;
-        Debug.Log("velocity: " + rb.velocity);
     }
 
     void Update()
