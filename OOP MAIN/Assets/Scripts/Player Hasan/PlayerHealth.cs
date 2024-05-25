@@ -46,11 +46,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.CompareTag("Enemy")&& !isImmune)
         {
-            PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
-            if (player.isBlocking)
-                currentHealth -= collision.GetComponent<EnemyStats>().damage * ((defense + 40) / 100);
-            else
-                currentHealth -= collision.GetComponent<EnemyStats>().damage * (defense / 100);
             StartCoroutine(Immunity());
             anim.SetTrigger("Hit");
             if (currentHealth <= 0)
@@ -58,7 +53,15 @@ public class PlayerHealth : MonoBehaviour
                 StartCoroutine(death());
             }
         }
+    }
 
+    public void TakeDamage(float a)
+    {
+        if(PlayerController.Instance.isBlocking)
+            currentHealth -= a * ((defense + 40) / 100);
+        else
+            currentHealth -= a * (defense / 100);
+        StartCoroutine(Immunity());
     }
 
     IEnumerator death()

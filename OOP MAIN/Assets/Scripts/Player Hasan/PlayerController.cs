@@ -257,7 +257,7 @@ public class PlayerController : MonoBehaviour
             canDash = false;
             isDashing = true;
             rb.gravityScale = 0f;
-            rb.velocity = new Vector2(transform.localScale.x * 200, 0f);
+            rb.velocity = new Vector2(transform.localScale.x * 120, 0f);
             yield return new WaitForSeconds(dashTime / 2);
             rb.gravityScale = 1f;
             isDashing = false;
