@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask enemyLayers;
     public LayerMask layer;
 
-    public GameObject circle, circleR, arrow, shootPointObj,cameraa;
+    public GameObject circle, circleR, arrow,arrow2, shootPointObj,cameraa,bow,sword;
     public GameObject inventory;
 
     Animator anim;
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
         if (GetComponent<PlayerHealth>().isDying == true)
             return;
         block();
-        if (isDashing || isBlocking)
+        if (isBlocking)
             return;
         wallClimb();
         CheckDirection();
@@ -91,7 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerHealth.instance.isDying == true)
             return;
-        if (isDashing || isBlocking)
+        if (isBlocking)
             return;
         Movement();
     }
@@ -175,7 +176,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("isEmir", false);
             rb.velocity = new Vector2(movementDirection * speed * 1.4f, rb.velocity.y);
-            anim.SetFloat("run_oguz", Math.Abs(movementDirection * speed));
+            anim.SetFloat("run", Math.Abs(movementDirection * speed));
         }
     }
 
@@ -257,9 +258,11 @@ public class PlayerController : MonoBehaviour
             canDash = false;
             isDashing = true;
             rb.gravityScale = 0f;
+            anim.SetBool("isDashing", true);
             rb.velocity = new Vector2(transform.localScale.x * 120, 0f);
             yield return new WaitForSeconds(dashTime / 2);
             rb.gravityScale = 1f;
+            anim.SetBool("isDashing", false);
             isDashing = false;
         }
         else
@@ -268,10 +271,10 @@ public class PlayerController : MonoBehaviour
             {
                 canDash = false;
                 isDashing = true;
-                anim.SetBool("isRolling", true);
+                anim.SetBool("isSliding", true);
                 rb.velocity = new Vector2(transform.localScale.x * 50f, rb.velocity.y);
                 yield return new WaitForSeconds(dashTime * 1.6f);
-                anim.SetBool("isRolling", false);
+                anim.SetBool("isSliding", false);
                 isDashing = false;
             }
         }
@@ -319,17 +322,37 @@ public class PlayerController : MonoBehaviour
     {
         if (!isEmirHoca && Input.GetMouseButtonDown(1) && Time.time > nextShoot)
         {
+            sword.SetActive(false);
+            bow.SetActive(true);
+            anim.SetBool("arrow",true);
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
             if (!isFaceRight && (mousePosition - shootPointObj.transform.position).normalized.x > 0)
                 Flip();
             else if (isFaceRight && (mousePosition - shootPointObj.transform.position).normalized.x < 0)
+            {
                 Flip();
+            }
             Vector3 shootPoint = shootPointObj.transform.position;
             shootDirection = (mousePosition - shootPoint).normalized;
+            if(transform.localScale.x > 0)
+            {
+                arrow.transform.localScale = new Vector3(-0.05f, 0.05f, 0.05f);
+            }
+            else
+                arrow.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
             Instantiate(arrow, shootPoint, Quaternion.identity);
             nextShoot = Time.time + 0.5f;
+            StartCoroutine(Count());
         }
+    }
+
+    IEnumerator Count()
+    {
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("arrow", false);
+        bow.SetActive(false);
+        sword.SetActive(true);
     }
 
     public void InventoryIsActive ()
