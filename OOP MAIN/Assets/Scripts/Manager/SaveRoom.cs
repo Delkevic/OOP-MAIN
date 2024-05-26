@@ -24,6 +24,7 @@ public class SaveRoom : MonoBehaviour
     IEnumerator CloseText()
     {
         yield return new WaitForSeconds(2);
+        saveText.SetActive(false);
         transform.GetComponent<BoxCollider2D>().enabled = false;
     }
 }
