@@ -15,6 +15,7 @@ public class Enemy2 : MonoBehaviour
     public bool inRange;
     private bool cooling;
     private float intTimer;
+    public float something;
 
     public Transform leftBound, rightBound;
     public GameObject actionZone,triggerZone;
@@ -106,7 +107,7 @@ public class Enemy2 : MonoBehaviour
         an.SetBool("CanWalk",true);
         if (!an.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
         {
-            Vector2 targetPosition = new Vector2(target.transform.position.x, -0.1f);
+            Vector2 targetPosition = new Vector2(target.transform.position.x, something);
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
     }

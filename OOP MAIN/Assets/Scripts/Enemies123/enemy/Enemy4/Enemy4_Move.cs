@@ -10,6 +10,7 @@ public class Enemy4_Move : MonoBehaviour
     public float moveSpeed;
     public float cool=1f;
     public float shootCoolDown;
+    public float something;
     public bool isReload;
     public bool inFocus;
     public bool inRange;
@@ -116,7 +117,7 @@ public class Enemy4_Move : MonoBehaviour
         an.SetBool("walk", true);
         if (!an.GetCurrentAnimatorStateInfo(0).IsName("Enemy4_Shot"))
         {
-            targetPosition = new Vector2(target.transform.position.x,0.2f);
+            targetPosition = new Vector2(target.transform.position.x,something);
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
 
