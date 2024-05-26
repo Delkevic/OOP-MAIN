@@ -52,7 +52,6 @@ public class MonsterMovement : MonoBehaviour
             }
             else
             {
-                Debug.Log("Sola");
                 transform.position += Vector3.left * moveSpeed * Time.deltaTime;
                 transform.localScale = new Vector3(0.25f, transform.localScale.y, transform.localScale.z);
             }
