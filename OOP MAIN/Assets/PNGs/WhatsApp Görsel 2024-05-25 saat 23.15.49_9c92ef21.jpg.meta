@@ -1,0 +1,260 @@
+fileFormatVersion: 2
+guid: 860f010c62b1a584b8fc57be1a1d3b7f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "WhatsApp G\xF6rsel 2024-05-25 saat 23.15.49_9c92ef21_0"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1536
+        height: 1536
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 415.32764, y: -695.75757}
+        - {x: 364.58752, y: -756.6296}
+        - {x: 329.0835, y: -708.88165}
+        - {x: 241.18274, y: -703.855}
+        - {x: 174.43542, y: -732.1207}
+        - {x: 186.92163, y: -562.29407}
+        - {x: 241.51196, y: -529.69696}
+        - {x: 235.80597, y: -405.8317}
+        - {x: 241.49976, y: -333.39667}
+        - {x: 224.17499, y: -326.07516}
+        - {x: 211.60168, y: -281.71744}
+        - {x: 187.60431, y: -299.0575}
+        - {x: 160.53937, y: -273.79352}
+        - {x: 135.23883, y: -331.1069}
+        - {x: 12.106628, y: -339.7829}
+        - {x: -3.4239502, y: -314.87494}
+        - {x: -54.17517, y: -309.96246}
+        - {x: -94.907776, y: -363.94193}
+        - {x: -101.31836, y: -467.51495}
+        - {x: -67.91266, y: -479.602}
+        - {x: -31.234985, y: -521.61346}
+        - {x: -15.579651, y: -583.1831}
+        - {x: 32.17633, y: -594.1127}
+        - {x: 12.532166, y: -628.0407}
+        - {x: 6.015808, y: -713.4966}
+        - {x: -37.67633, y: -715.43896}
+        - {x: -75.22229, y: -643.11304}
+        - {x: -138.32477, y: -673.92456}
+        - {x: -200.50842, y: -688.7498}
+        - {x: -226.57635, y: -744.97455}
+        - {x: -270.29105, y: -737.5719}
+        - {x: -278.04105, y: -653.59015}
+        - {x: -228.99353, y: -605.1732}
+        - {x: -175.4076, y: -492.80444}
+        - {x: -200.62323, y: -320.20905}
+        - {x: -169.18616, y: -198.89478}
+        - {x: -124.225464, y: -215.53613}
+        - {x: -79.37488, y: -160.60962}
+        - {x: -34.537476, y: -203.33716}
+        - {x: -0.7052002, y: -165.81299}
+        - {x: -19.89038, y: -3.18219}
+        - {x: -58.20331, y: -39.228333}
+        - {x: -83.40863, y: -19.154907}
+        - {x: -141.69794, y: 36.86609}
+        - {x: -157.7652, y: 108.034424}
+        - {x: -141.93402, y: 165.50781}
+        - {x: -196.51892, y: 189.03082}
+        - {x: -298.56134, y: -141.00098}
+        - {x: -339.25333, y: -137.71906}
+        - {x: -386.34726, y: -256.8898}
+        - {x: -409.85547, y: -328.60306}
+        - {x: -403.82944, y: -396.9938}
+        - {x: -458.8347, y: -392.76492}
+        - {x: -497.37442, y: -315.51807}
+        - {x: -389.1638, y: -54.19055}
+        - {x: -344.68988, y: -29.692444}
+        - {x: -242.50116, y: 314.65222}
+        - {x: -160.20764, y: 358.56567}
+        - {x: -34.2677, y: 399.4707}
+        - {x: -163.98407, y: 537.15344}
+        - {x: -167.69244, y: 588.92065}
+        - {x: -109.73273, y: 675.17883}
+        - {x: -8.753418, y: 708.74414}
+        - {x: 130.38837, y: 659.68713}
+        - {x: 158.46503, y: 561.13525}
+        - {x: 159.01666, y: 504.71777}
+        - {x: 122.74469, y: 466.22485}
+        - {x: 108.96057, y: 397.17578}
+        - {x: 226.95636, y: 395.97107}
+        - {x: 238.21802, y: 367.02808}
+        - {x: 310.54688, y: 381.281}
+        - {x: 429.8412, y: 61.50403}
+        - {x: 465.48547, y: 35.988647}
+        - {x: 469.3778, y: -16.546814}
+        - {x: 511.68896, y: -32.650757}
+        - {x: 596.8971, y: -327.88004}
+        - {x: 516.6382, y: -407.2184}
+        - {x: 444.844, y: -373.6834}
+        - {x: 466.92957, y: -220.2138}
+        - {x: 425.21033, y: -84.414856}
+        - {x: 374.46265, y: -37.025574}
+        - {x: 273.4386, y: 203.19983}
+        - {x: 264.56348, y: 38.16571}
+        - {x: 210.03448, y: 0.101623535}
+        - {x: 137.45685, y: -21.955627}
+        - {x: 143.6275, y: -153.41266}
+        - {x: 177.7492, y: -159.05518}
+        - {x: 182.5813, y: -182.65155}
+        - {x: 240.49622, y: -184.255}
+        - {x: 242.80804, y: -127.40454}
+        - {x: 329.64197, y: -128.52856}
+        - {x: 346.84448, y: -211.90234}
+        - {x: 326.84033, y: -264.7357}
+        - {x: 355.95654, y: -475.11664}
+        - {x: 380.09827, y: -572.8844}
+        - {x: 401.27942, y: -518.8898}
+        - {x: 416.25342, y: -572.05334}
+        - {x: 447.96777, y: -582.229}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6affdfb5579800842bd18e788079dc3e
+      internalID: -1358320895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "WhatsApp G\xF6rsel 2024-05-25 saat 23.15.49_9c92ef21_0": -1358320895
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

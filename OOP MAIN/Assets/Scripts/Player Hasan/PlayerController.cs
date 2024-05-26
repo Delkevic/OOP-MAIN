@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -24,9 +25,7 @@ public class PlayerController : MonoBehaviour
     public float attackRate = 2f;
     float nextAttack = 0f;
     float nextShoot = 0f;
-    float movementCheck;
     float dashTime = 0.3f;
-    float num = 0f;
     public float attackDistance;
     public float damage = 25f;
     public float tempDamage;
@@ -34,15 +33,14 @@ public class PlayerController : MonoBehaviour
     float changeTime = 2f;
 
     private bool isFaceRight = true;
+    bool isDashing = false;
     bool isGrounded;
-    bool isGrounded2;
     bool sjump = true;
     bool canClimbR = false;
-    bool canClimbR2 = false;
     bool canDash = true;
-    bool isDashing = false;
     bool isEmirHoca = true;
     public bool isBlocking = false;
+    bool invIsActive = false;
 
     Rigidbody2D rb;
 
@@ -51,11 +49,12 @@ public class PlayerController : MonoBehaviour
     public LayerMask enemyLayers;
     public LayerMask layer;
 
-    public GameObject circle, circle2, circleR, circleR2, arrow, shootPointObj,cameraa;
+    public GameObject circle, circleR, arrow, shootPointObj, cameraa, bow, sword;
+    public GameObject inventory;
 
     Animator anim;
 
-    public Text currentXPText;
+    //public Text currentXPText;
 
     public Vector2 shootDirection;
 
@@ -64,7 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        currentXPText.text = Experience.instance.currentExperience.ToString() + "/" + Experience.instance.expToNextLevel.ToString();
+        //currentXPText.text = Experience.instance.currentExperience.ToString() + "/" + Experience.instance.expToNextLevel.ToString();
     }
 
 
@@ -72,9 +71,10 @@ public class PlayerController : MonoBehaviour
     {
         if (GetComponent<PlayerHealth>().isDying == true)
             return;
-        block();
-        if (isDashing || isBlocking)
+
+        if (isBlocking || isDashing)
             return;
+        StartCoroutine(block());
         wallClimb();
         CheckDirection();
         jump();
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         dashCheck();
         AttackKnt();
         characterChange();
-
+        InventoryIsActive();
         arrowCheck();
     }
 
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerHealth.instance.isDying == true)
             return;
-        if (isDashing || isBlocking)
+        if (isBlocking||isDashing)
             return;
         Movement();
     }
@@ -112,43 +112,33 @@ public class PlayerController : MonoBehaviour
     {
         if (canDash && Input.GetKeyDown(KeyCode.LeftShift) && !canClimbR)
         {
+            Debug.Log("dashCheck giriyor");
             StartCoroutine(dash());
         }
     }
 
     public void Attack()
     {
-        if (num != 3f && isEmirHoca)
-        {
-            anim.SetTrigger("atk1");
-            num++;
+        if (isEmirHoca)
             tempDamage = damage;
-        }
-        if (num == 3 && isEmirHoca)
-        {
-            anim.SetTrigger("atk2");
-            num = 0f;
-            tempDamage = damage * 1.5f;
-        }
-
         if (!isEmirHoca)
-        {
-            anim.SetTrigger("atk1");
             tempDamage = damage - 10;
-        }
+        anim.SetBool("atk1", true);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackDistance, enemyLayers);
+
+        StartCoroutine(Count());
 
         foreach (Collider2D enemy in hitEnemies)
         {
             //enemy.GetComponent<EnemyStats>().takeDamage(tempDamage);
-            currentXPText.text = Experience.instance.currentExperience.ToString() + "/" + Experience.instance.expToNextLevel.ToString();
+            //currentXPText.text = Experience.instance.currentExperience.ToString() + "/" + Experience.instance.expToNextLevel.ToString();
         }
     }
 
     private void AttackKnt()
     {
-        if (Time.time > nextAttack && isGrounded && isGrounded2)
+        if (Time.time > nextAttack && isGrounded)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -175,7 +165,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("isEmir", false);
             rb.velocity = new Vector2(movementDirection * speed * 1.4f, rb.velocity.y);
-            anim.SetFloat("run_oguz", Math.Abs(movementDirection * speed));
+            anim.SetFloat("run", Math.Abs(movementDirection * speed));
         }
     }
 
@@ -208,7 +198,7 @@ public class PlayerController : MonoBehaviour
 
     public void jump()
     {
-        if (isGrounded && isGrounded2)
+        if (isGrounded)
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
@@ -227,7 +217,7 @@ public class PlayerController : MonoBehaviour
 
     public void wallClimb()
     {
-        if (canClimbR || canClimbR2)
+        if (canClimbR)
         {
             if (Input.GetKey(KeyCode.W))
                 rb.velocity = new Vector2(0, climbSpeed);
@@ -241,61 +231,36 @@ public class PlayerController : MonoBehaviour
     public void surfaceCheck()
     {
         isGrounded = Physics2D.OverlapCircle(circle.transform.position, radius, layer);
-        isGrounded2 = Physics2D.OverlapCircle(circle2.transform.position, radius, layer);
         canClimbR = Physics2D.OverlapCircle(circleR.transform.position, radius, layer);
-        canClimbR2 = Physics2D.OverlapCircle(circleR2.transform.position, radius, layer);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(circle.transform.position, radius);
-        Gizmos.DrawWireSphere(circle2.transform.position, radius);
         Gizmos.DrawWireSphere(circleR.transform.position, radius);
-        Gizmos.DrawWireSphere(circleR2.transform.position, radius);
         Gizmos.DrawWireSphere(attackPoint.position, attackDistance);
     }
     private IEnumerator dash()
     {
-        if (!isEmirHoca)
-        {
             canDash = false;
-            isDashing = true;
             rb.gravityScale = 0f;
-            rb.velocity = new Vector2(transform.localScale.x * 9, 0f);
+            isDashing = true;
+            rb.velocity = new Vector2(transform.localScale.x * 120, 0f);
             yield return new WaitForSeconds(dashTime / 2);
-            rb.gravityScale = 1f;
             isDashing = false;
-        }
-        else
-        {
-            if (isGrounded || isGrounded2)
-            {
-                canDash = false;
-                isDashing = true;
-                anim.SetBool("isRolling", true);
-                rb.velocity = new Vector2(transform.localScale.x * 2.8f, rb.velocity.y);
-                yield return new WaitForSeconds(dashTime * 1.6f);
-                anim.SetBool("isRolling", false);
-                isDashing = false;
-            }
-        }
+            rb.gravityScale = 1f;
     }
 
-    public void block()
+    IEnumerator block()
     {
-        if (isEmirHoca && isGrounded && isGrounded2)
+        if (isEmirHoca && isGrounded && Input.GetMouseButtonDown(1))
         {
-            if (Input.GetMouseButton(1))
-            {
-                isBlocking = true;
-                rb.velocity = Vector2.zero;
-                anim.SetBool("isBlocking", true);
-            }
-            else
-            {
-                isBlocking = false;
-                anim.SetBool("isBlocking", false);
-            }
+            isBlocking = true;
+            rb.velocity = Vector2.zero;
+            anim.SetBool("isBlocking", true);
+            yield return new WaitForSeconds(0.5f);
+            isBlocking = false;
+            anim.SetBool("isBlocking", false);
         }
     }
 
@@ -310,29 +275,64 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isBlocking", false);
         yield return new WaitForSeconds(3);
         canBlock = true;
-    }
-    private void blockCheck()
-    {
-        if (isEmirHoca && Input.GetMouseButtonDown(1) && canBlock && isGrounded&&isGrounded2)
-        {
-                StartCoroutine(block());
-        }
     }*/
 
     void arrowCheck()
     {
         if (!isEmirHoca && Input.GetMouseButtonDown(1) && Time.time > nextShoot)
         {
+            tempDamage -= 10;
+            sword.SetActive(false);
+            bow.SetActive(true);
+            anim.SetBool("arrow", true);
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
             if (!isFaceRight && (mousePosition - shootPointObj.transform.position).normalized.x > 0)
                 Flip();
             else if (isFaceRight && (mousePosition - shootPointObj.transform.position).normalized.x < 0)
+            {
                 Flip();
+            }
             Vector3 shootPoint = shootPointObj.transform.position;
             shootDirection = (mousePosition - shootPoint).normalized;
+            if (transform.localScale.x > 0)
+            {
+                arrow.transform.localScale = new Vector3(-0.05f, 0.05f, 0.05f);
+            }
+            else
+                arrow.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
             Instantiate(arrow, shootPoint, Quaternion.identity);
             nextShoot = Time.time + 0.5f;
+            StartCoroutine(Count());
         }
+    }
+
+    IEnumerator Count()
+    {
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("arrow", false);
+        anim.SetBool("atk1", false);
+        bow.SetActive(false);
+        sword.SetActive(true);
+    }
+
+    public void InventoryIsActive()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && !invIsActive)
+        {
+            inventory.SetActive(true);
+            invIsActive = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && invIsActive)
+        {
+            inventory.SetActive(false);
+            invIsActive = false;
+        }
+    }
+
+    public void characterThrow(float speed)
+    {
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + speed);
     }
 }
