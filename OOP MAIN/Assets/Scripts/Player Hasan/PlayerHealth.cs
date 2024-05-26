@@ -41,6 +41,10 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = maxHealth;
         }
         healthBar.fillAmount = currentHealth / maxHealth;
+        if(currentHealth<=0)
+        {
+            StartCoroutine(death());
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

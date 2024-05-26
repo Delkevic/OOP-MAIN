@@ -130,7 +130,11 @@ public class PlayerController : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
+<<<<<<< HEAD
             enemy.GetComponent<Health>().TakeDamage(tempDamage);
+=======
+            enemy.GetComponent<EnemyHealth>().TakeDamage(tempDamage);
+>>>>>>> enemies-new
             //currentXPText.text = Experience.instance.currentExperience.ToString() + "/" + Experience.instance.expToNextLevel.ToString();
         }
         StartCoroutine(Count());
@@ -140,7 +144,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.time > nextAttack && isGrounded)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.H))
             {
                 Attack();
                 if (isEmirHoca)

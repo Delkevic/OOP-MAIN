@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:OOP MAIN/Assets/Scripts/Enemies123.meta
 guid: baa6413c049aae14c88d67bd5f536cc3
+=======
+guid: 07cf4dd0619224333989a2c3c3a5fcaf
+>>>>>>> enemies-new:OOP MAIN/Assets/Scripts/Enemy.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
