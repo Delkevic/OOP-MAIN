@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public Animator anim;
+    public GameObject showSettings;
     void Start()
     {
 
@@ -17,6 +17,13 @@ public class MainMenu : MonoBehaviour
     }
 
     public void StartGame()
+    {
+        PlayerPrefs.DeleteAll();
+        GameData.instance.ClearData();
+        SceneManager.LoadScene(1);
+    }
+
+    public void LoadGame()
     {
         SceneManager.LoadScene(1);
     }
@@ -33,10 +40,10 @@ public class MainMenu : MonoBehaviour
 
     public void ShowOpt()
     {
-        anim.SetBool("Show", true);
+        showSettings.SetActive(true);
     }
     public void HideOpt()
     {
-        anim.SetBool("Show", false);
+        showSettings?.SetActive(false);
     }
 }
