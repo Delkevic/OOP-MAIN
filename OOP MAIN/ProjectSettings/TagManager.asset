@@ -11,6 +11,8 @@ TagManager:
   - water
   - Special Point
   - Boss
+  - Weak Point
+  - Ates
   layers:
   - Default
   - TransparentFX

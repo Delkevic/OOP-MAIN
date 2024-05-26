@@ -31,31 +31,22 @@ public class EnemyAI : MonoBehaviour
 
     void FireFireball()
     {
-        if (fireballPrefab == null)
-        {
-            Debug.LogError("Fireball Prefab is not assigned!");
-            return;
-        }
-
-        // Ateþ topunun yönünü belirle
-        Vector2 direction = (playerTransform.position - transform.position).normalized;
-        Vector2 fireballPosition = (Vector2)transform.position + direction * fireballOffset; // Bir birim offset
-
         // Ateþ topunu oluþtur
-        GameObject fireball = Instantiate(fireballPrefab, fireballPosition, Quaternion.identity);
-        Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
+        GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
 
+        // Ateþ topunun yönünü belirle ve hýzýný ayarla
+        Vector2 direction = (playerTransform.position - transform.position).normalized;
+        Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            // Ateþ topunun hýzýný belirle
             rb.velocity = direction * fireballSpeed;
         }
 
-        // Ateþ topuna sahibinin tag'ýný bildir
+        // Ateþ topunun sahibini belirle
         Fireball fireballScript = fireball.GetComponent<Fireball>();
         if (fireballScript != null)
         {
-            fireballScript.SetOwnerTag(gameObject.tag);
+            fireballScript.SetOwnerTag(gameObject);
         }
     }
 }
