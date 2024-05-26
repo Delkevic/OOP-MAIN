@@ -9,7 +9,7 @@ public class EnemyStats : MonoBehaviour
     private float currentHealth;
     public GameObject deathEffect;
     public float timer;
-    HitEffect effect;
+    //HitEffect effect;
     Rigidbody2D rb;
     public float knockBackForceX, knockBackForceY;
     public Transform player;
@@ -21,7 +21,7 @@ public class EnemyStats : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        effect = GetComponent<HitEffect>();
+        //effect = GetComponent<HitEffect>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -43,12 +43,12 @@ public class EnemyStats : MonoBehaviour
             rb.AddForce(new Vector2(-knockBackForceX, knockBackForceY), ForceMode2D.Force);
         }
 
-        GetComponent<SpriteRenderer>().material = effect.white;
+        //GetComponent<SpriteRenderer>().material = effect.white;
         StartCoroutine(BackToNormal());
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Instantiate(deathEffect, transform.position, transform.rotation);
+            //Instantiate(deathEffect, transform.position, transform.rotation);
 
             Instantiate(lootItems[0],transform.position,Quaternion.identity);
             Destroy(gameObject);
@@ -60,6 +60,6 @@ public class EnemyStats : MonoBehaviour
     IEnumerator BackToNormal()
     {
         yield return new WaitForSeconds(timer);
-        GetComponent<SpriteRenderer>().material = effect.original;
+        //GetComponent<SpriteRenderer>().material = effect.original;
     }
 }

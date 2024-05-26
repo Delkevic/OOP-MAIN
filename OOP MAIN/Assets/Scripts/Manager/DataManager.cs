@@ -6,6 +6,7 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
 
+
     private void Awake()
     {
         if(instance == null)
@@ -19,9 +20,14 @@ public class DataManager : MonoBehaviour
         }
            
     }
+    private void Update()
+    {
+        SavePosition();
+    }
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
+        transform.position = new Vector3 (PlayerPrefs.GetFloat("x"), PlayerPrefs.GetFloat("y"), PlayerPrefs.GetFloat("z"));
     }
     public void SetMusicData(float value)
     {
@@ -58,5 +64,11 @@ public class DataManager : MonoBehaviour
     public void CurrentHealth(float value)
     {
         PlayerPrefs.SetFloat("CurrentHealth",value);
+    }
+    public void SavePosition()
+    {
+        PlayerPrefs.SetFloat("x", transform.position.x);
+        PlayerPrefs.SetFloat("y", transform.position.y);
+        PlayerPrefs.SetFloat("z", transform.position.z);
     }
 }

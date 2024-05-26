@@ -12,13 +12,10 @@ public class Arrow : MonoBehaviour
     void Start()
     {
         Vector2 vector2 = new Vector2(10f,10f);
-        PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
-        direction = player.shootDirection;
-        Debug.Log("direction: "+direction);
+        direction = PlayerController.Instance.shootDirection;
         //destroyTime();
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = direction*vector2;
-        Debug.Log("velocity: " + rb.velocity);
     }
 
     void Update()
@@ -26,23 +23,20 @@ public class Arrow : MonoBehaviour
     }
 
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        /*if (collision.CompareTag("Enemy"))
         {
             collision.GetComponent<EnemyStats>().takeDamage(damage);
             Destroy(gameObject);
-        }
+        }*/
         if (collision.CompareTag("Ground"))
             Destroy(gameObject);
-    }*/
+    }
 
-    /*
     IEnumerator destroyTime()
     {
-        Debug.Log("selam");
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
-    */
 }
