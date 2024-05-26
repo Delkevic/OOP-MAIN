@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-    public float explosionRadius = 2f;   // Patlama yarýçapý
-    public float explosionForce = 700f;  // Patlama kuvveti
-    public int damage = 50;              // Hasar miktarý
-    public string ownerTag;              // Roketin sahibi
+    public float explosionRadius = 2f;   
+    public float explosionForce = 700f;  
+    public int damage = 40;             
+    public string ownerTag;          
     
 
     // Patlama efekti
@@ -17,22 +17,18 @@ public class Rocket : MonoBehaviour
     {
         if (collision.CompareTag("Player")|| collision.CompareTag("Ground"))
         {
-            // Patlama etkisi yarat
             Explode();
-            // Roketi yok et
             Destroy(gameObject); 
         }
     }
 
     void Explode()
     {
-        // Patlama efekti oluþtur
         if (explosionEffect != null)
         {
             Instantiate(explosionEffect, transform.position, transform.rotation);
         }
 
-        // Patlama alanýndaki tüm nesneleri bul
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
         foreach (Collider2D nearbyObject in colliders)
@@ -46,7 +42,6 @@ public class Rocket : MonoBehaviour
 
             if (nearbyObject.CompareTag("Player"))
             {
-                // Ana karaktere hasar ver
                 PlayerHealth playerHealth = nearbyObject.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {

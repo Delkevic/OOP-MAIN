@@ -123,17 +123,17 @@ public class PlayerController : MonoBehaviour
             tempDamage = damage;
         if (!isEmirHoca)
             tempDamage = damage - 10;
+
         anim.SetBool("atk1", true);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackDistance, enemyLayers);
 
-        StartCoroutine(Count());
-
         foreach (Collider2D enemy in hitEnemies)
         {
-            //enemy.GetComponent<EnemyStats>().takeDamage(tempDamage);
+            enemy.GetComponent<Health>().TakeDamage(tempDamage);
             //currentXPText.text = Experience.instance.currentExperience.ToString() + "/" + Experience.instance.expToNextLevel.ToString();
         }
+        StartCoroutine(Count());
     }
 
     private void AttackKnt()
