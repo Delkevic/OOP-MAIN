@@ -57,7 +57,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float a)
     {
-        Debug.Log("TakeDamage calisiyor");
         if(PlayerController.Instance.isBlocking)
             currentHealth -= a * ((defense + 40) / 100);
         else
@@ -65,14 +64,12 @@ public class PlayerHealth : MonoBehaviour
         StartCoroutine(Immunity());
     }
 
-    IEnumerator death()
+    public IEnumerator death()
     {
         isDying = true;
         anim.SetBool("isDead", true);
         yield return new WaitForSeconds(2f);
-        currentHealth = 0;
-        Destroy(gameObject);
-        healthBar.fillAmount = 0;
+        Respawn();
     }
 
     IEnumerator Immunity()
@@ -80,5 +77,25 @@ public class PlayerHealth : MonoBehaviour
         isImmune = true;
         yield return new WaitForSeconds(immunityTime);
         isImmune = false;
+    }
+
+    public void Respawn()
+    {
+        if (PlayerPrefs.HasKey("x") && PlayerPrefs.HasKey("y") && PlayerPrefs.HasKey("z"))
+        {
+            float x = PlayerPrefs.GetFloat("x");
+            float y = PlayerPrefs.GetFloat("y");
+            float z = PlayerPrefs.GetFloat("z");
+            transform.position = new Vector3(x, y, z);
+        }
+        else
+        {
+            transform.position = Vector3.zero;
+        }
+
+        currentHealth = maxHealth;
+        healthBar.fillAmount = currentHealth / maxHealth;
+        anim.SetBool("isDead", false);
+        isDying = false;
     }
 }

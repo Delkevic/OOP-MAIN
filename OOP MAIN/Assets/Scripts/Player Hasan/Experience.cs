@@ -95,8 +95,6 @@ public class Experience : MonoBehaviour
         DataManager.instance.CurrentStars(StarBank.instance.bankStar);
         StarBank.instance.bankStar = PlayerPrefs.GetInt("StarAmount");
 
-        DataManager.instance.SavePosition();
-
         DataManager.instance.CurrenntCoin(CoinManager.instance.bank);
         CoinManager.instance.bank = PlayerPrefs.GetInt("CoinAmount");
 

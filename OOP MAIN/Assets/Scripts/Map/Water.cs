@@ -13,7 +13,7 @@ public class Water : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-            Destroy(collision.gameObject);
+            PlayerHealth.instance.Respawn();
     }
 
     void Update()

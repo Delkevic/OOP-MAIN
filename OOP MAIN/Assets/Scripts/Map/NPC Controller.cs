@@ -12,6 +12,7 @@ public class NPCController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
     }
 
     void Start()
