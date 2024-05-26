@@ -40,6 +40,10 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
+        if (currentHealth <= 0)
+        {
+            StartCoroutine(death());
+        }
         healthBar.fillAmount = currentHealth / maxHealth;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,10 +51,6 @@ public class PlayerHealth : MonoBehaviour
         if (collision.CompareTag("Enemy")&& !isImmune)
         {
             StartCoroutine(Immunity());
-            if (currentHealth <= 0)
-            {
-                StartCoroutine(death());
-            }
         }
     }
 
