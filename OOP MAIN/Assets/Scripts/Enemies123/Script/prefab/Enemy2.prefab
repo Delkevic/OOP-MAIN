@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 8307880756423142908}
   - component: {fileID: 7907520945563812589}
   - component: {fileID: 6449741934702217375}
+  - component: {fileID: 5523630951898647834}
   m_Layer: 6
   m_Name: Enemy2
   m_TagString: Enemy
@@ -448,7 +449,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 4723107735738678597, guid: 1018b0ba13578bf459bd254ae1a2be99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -600,10 +601,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43cb739a5a8ec49688eddc153993a829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockBackForceX: 1000
-  knockBackForceY: 200
+  currentHealth: 0
   player1: {fileID: 0}
   isStunned: 0
+  maxHealth: 10000
+  crtHealth: 0
 --- !u!114 &6449741934702217375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,3 +629,17 @@ MonoBehaviour:
   triggerZone: {fileID: 8784297360024687637}
   target: {fileID: 0}
   damage: 20
+--- !u!114 &5523630951898647834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217399509048760443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae556f7f4782e44199a35661adc24cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 500
+  currentHealth: 0

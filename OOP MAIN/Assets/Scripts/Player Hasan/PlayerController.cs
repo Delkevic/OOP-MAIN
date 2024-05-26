@@ -117,6 +117,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
+
     public void Attack()
     {
         if (isEmirHoca)

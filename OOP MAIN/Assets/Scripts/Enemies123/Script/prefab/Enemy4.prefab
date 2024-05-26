@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 1296418406850564158}
   - component: {fileID: 598724293663491332}
   - component: {fileID: 849822831956391642}
+  - component: {fileID: 9219012036808090140}
   m_Layer: 6
   m_Name: Soilder
   m_TagString: Enemy
@@ -176,7 +177,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: -1263637951, guid: 597445623723b405ebf82818a6b898c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -320,11 +321,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a53efff8f030499399f96234ddbb165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockBackForceX: 1000
-  knockBackForceY: 200
+  currentHealth: 0
   player1: {fileID: 0}
   isStunned: 0
   stunnedTime: 3
+--- !u!114 &9219012036808090140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6224385432932753933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae556f7f4782e44199a35661adc24cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 400
+  currentHealth: 0
 --- !u!1 &6885215033610308478
 GameObject:
   m_ObjectHideFlags: 0

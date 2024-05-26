@@ -47,7 +47,6 @@ public class PlayerHealth : MonoBehaviour
         if (collision.CompareTag("Enemy")&& !isImmune)
         {
             StartCoroutine(Immunity());
-            anim.SetTrigger("Hit");
             if (currentHealth <= 0)
             {
                 StartCoroutine(death());

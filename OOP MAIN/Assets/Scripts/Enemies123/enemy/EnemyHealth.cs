@@ -13,7 +13,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     protected float damage = 20f;
     private float timer=1f;
     [SerializeField]
-    private  float knockBackForceX = 1000f, knockBackForceY = 200f;
     protected  float currentHealth;
     [SerializeField]
     private Transform player1;

@@ -8,6 +8,8 @@ public class Enem2_Stats : EnemyHealth
     public bool isStunned;
     private Enemy2 enemy2;
     private float timer2=0.8f;
+    public float maxHealth = 100f;
+    public float crtHealth;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,6 +23,7 @@ public class Enem2_Stats : EnemyHealth
         an = GetComponent<Animator>();
         enemy2=GetComponentInParent<Enemy2>();
         currentHealth = maxHealth;
+        crtHealth = maxHealth;
     }
 
     
@@ -29,9 +32,9 @@ public class Enem2_Stats : EnemyHealth
     {
         if(!isStunned)
         {
-            if(currentHealth >0)
+            if(crtHealth >0)
             {
-                currentHealth -= damage;
+                crtHealth -= damage;
                 an.SetBool("CanWalk", false);
                 an.SetBool("Attack", false);
                 an.SetBool("Hit",true);
@@ -40,7 +43,7 @@ public class Enem2_Stats : EnemyHealth
             }
             else
             {
-                currentHealth =0;
+                crtHealth =0;
                 an.SetBool("CanWalk", false);
                 an.SetBool("Attack", false);
                 an.SetBool("Death",true);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float maxHealth = 100;
+    public float maxHealth = 400;
     public float currentHealth;
 
     void Start()
@@ -18,6 +18,7 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
+            CoinManager.instance.Money(100);
         }
     }
 
@@ -28,7 +29,7 @@ public class Health : MonoBehaviour
             TakeDamage(PlayerController.Instance.damage);
             Destroy(collision.gameObject);
         }
-        if (collision.CompareTag("sword"))
+        if (collision.CompareTag("sword")||collision.CompareTag("Boss"))
         {
             TakeDamage(PlayerController.Instance.tempDamage);
         }
