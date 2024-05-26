@@ -11,6 +11,8 @@ TagManager:
   - water
   - Special Point
   - Boss
+  - TriggerZone
+  - ActionZone
   layers:
   - Default
   - TransparentFX
