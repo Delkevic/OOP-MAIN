@@ -32,12 +32,12 @@ public class MonsterMovement : MonoBehaviour
             // Takip etme hareketi
             if (transform.position.x > playerTransform.position.x)
             {
-                transform.localScale = new Vector3(1, 1, 1);
+                transform.localScale = new Vector3(0.2f, 0.2f, 1.0f);
                 transform.position += Vector3.left * moveSpeed * Time.deltaTime;
             }
             else if (transform.position.x < playerTransform.position.x)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                transform.localScale = new Vector3(-0.2f, 0.2f, 1.0f);
                 transform.position += Vector3.right * moveSpeed * Time.deltaTime;
             }
         }
@@ -64,11 +64,11 @@ public class MonsterMovement : MonoBehaviour
             // Yön deðiþtirme
             if (transform.position.x < patrolPoints[patrolDestination].position.x)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                transform.localScale = new Vector3(-0.2f, 0.2f, 1.0f);
             }
             else if (transform.position.x > patrolPoints[patrolDestination].position.x)
             {
-                transform.localScale = new Vector3(1, 1, 1);
+                transform.localScale = new Vector3(0.2f, 0.2f, 1.0f);
             }
         }
         void OnDrawGizmosSelected()
