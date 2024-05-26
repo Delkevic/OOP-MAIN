@@ -9,7 +9,7 @@ public class MonsterDanage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag== "Plater")
+        if(collision.gameObject.tag== "Player")
         {
             playerHealth.TakeDamage(damage);
         }

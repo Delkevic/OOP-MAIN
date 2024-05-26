@@ -11,7 +11,7 @@ public class Arrow : MonoBehaviour
     public Vector2 direction;
     void Start()
     {
-        Vector2 vector2 = new Vector2(10f,10f);
+        Vector2 vector2 = new Vector2(20f,20f);
         direction = PlayerController.Instance.shootDirection;
         //destroyTime();
         rb = GetComponent<Rigidbody2D>();
@@ -20,6 +20,7 @@ public class Arrow : MonoBehaviour
 
     void Update()
     {
+        destroyTime();
     }
 
 
