@@ -33,11 +33,4 @@ public class NPCController : MonoBehaviour
             DialogueSystem.instance.AddDialogue(dialogue,nameOfnpc);
         }
     }
-
-    public void ColliderBoom()
-    {
-        Debug.Log("ColliderBoom");
-        BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-        Destroy(boxCollider);
-    }
 }

@@ -61,7 +61,6 @@ public class DialogueSystem : MonoBehaviour
         {
             dialoguePanel.SetActive(false);
             Time.timeScale = 1;
-            NPCController.instance.ColliderBoom();
         }
     }
 
