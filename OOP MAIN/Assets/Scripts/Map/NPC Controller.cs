@@ -35,7 +35,8 @@ public class NPCController : MonoBehaviour
 
     public void ColliderBoom()
     {
+        Debug.Log("ColliderBoom");
         BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-        boxCollider.enabled = false;
+        Destroy(boxCollider);
     }
 }
