@@ -45,6 +45,7 @@ public class Inventory : MonoBehaviour
                     item.transform.localPosition = new Vector3(0, 0, 0);
                     item.name = item.name.Replace("(Clone)", "");
                     isInstantiated = true;
+                    slots[i].GetComponent<Slots>().isUsed = true;
                     InventoryItems.Add(itemName, itemAmount);
                     amountText = slots[i].GetComponentInChildren<TextMeshProUGUI>();
                     amountText.text = itemAmount.ToString();

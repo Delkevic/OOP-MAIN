@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemUse : MonoBehaviour
@@ -21,6 +22,14 @@ public class ItemUse : MonoBehaviour
             StartCoroutine(DfsPot());
         if (speedToGive > 0 && !isSpd) 
             StartCoroutine(SpdPot());
+        if (healthToGive > 0)
+        {
+            if (PlayerHealth.instance.currentHealth != PlayerHealth.instance.maxHealth)
+                PlayerHealth.instance.currentHealth += healthToGive;
+
+            if(PlayerHealth.instance.currentHealth > PlayerHealth.instance.maxHealth) PlayerHealth.instance.currentHealth = PlayerHealth.instance.maxHealth;
+        }
+
     }
 
     IEnumerator StrPot()

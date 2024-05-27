@@ -67,10 +67,8 @@ public class Experience : MonoBehaviour
         if (choosenStat == 2)
             player.speed += 0.5f;
         if (choosenStat == 3)
-            player.jumpPower += 0.5f;
-        if (choosenStat == 4)
             PlayerHealth.instance.defense += 5;
-        if (choosenStat == 5)
+        if (choosenStat == 4)
         {
             PlayerHealth.instance.maxHealth += 10;
             PlayerHealth.instance.currentHealth += 10;

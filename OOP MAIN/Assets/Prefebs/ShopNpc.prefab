@@ -483,12 +483,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemInStore:
-  - {fileID: 3330038445837305778, guid: 8f2276efa4f38f44095a440754c101ac, type: 3}
+  - {fileID: 3330038445837305778, guid: 3ec204e125c9d624c891f8ac815530f5, type: 3}
   - {fileID: 3330038445837305778, guid: 06db0340a870fe643b48f3c3f1ecb753, type: 3}
-  - {fileID: 4194426495988158151, guid: 8f2ced573fe045c4fa9c6f7e1ece4c38, type: 3}
-  - {fileID: 4194426495988158151, guid: e06d28bfb0ceee549a9fbfc8c82f883e, type: 3}
-  - {fileID: 4194426495988158151, guid: b2d482f5bb9b794479a04957729b6ced, type: 3}
-  - {fileID: 4194426495988158151, guid: bee5fc7a40e7eaa4a97f2204c226512e, type: 3}
+  - {fileID: 3330038445837305778, guid: 85f04b2f88bd35d42b35ab1bbd49bf24, type: 3}
+  - {fileID: 3330038445837305778, guid: 8f2276efa4f38f44095a440754c101ac, type: 3}
+  - {fileID: 3330038445837305778, guid: 3ba33c00409abb548bf4067bcd78ae8c, type: 3}
+  - {fileID: 3330038445837305778, guid: 5c50dedc5bc8c7747a32f6e3badd960c, type: 3}
   sellItems: 0
   shopPanel: {fileID: 8268186805609500455}
 --- !u!114 &670944698995671188
@@ -1315,7 +1315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -473.46637, y: -36.57605}
+  m_AnchoredPosition: {x: -473.46643, y: -36.57617}
   m_SizeDelta: {x: -1257.1396, y: -271.5373}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &771125157170459768
