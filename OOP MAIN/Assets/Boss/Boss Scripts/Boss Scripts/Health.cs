@@ -4,27 +4,34 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int maxHealth = 100;
-    private int currentHealth;
+    public float maxHealth = 400;
+    public float currentHealth;
 
     void Start()
     {
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            Die();
+            Destroy(gameObject);
+            CoinManager.instance.Money(100);
         }
     }
 
-    void Die()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Ana karakterin ölmesi ile ilgili iþlemler
-        Debug.Log("Player died!");
-        Destroy(gameObject);
+        if (collision.CompareTag("arrow"))
+        {
+            TakeDamage(PlayerController.Instance.damage);
+            Destroy(collision.gameObject);
+        }
+        if (collision.CompareTag("sword")||collision.CompareTag("Boss"))
+        {
+            TakeDamage(PlayerController.Instance.tempDamage);
+        }
     }
 }

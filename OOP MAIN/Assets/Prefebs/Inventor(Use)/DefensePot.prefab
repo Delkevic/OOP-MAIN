@@ -308,3 +308,6 @@ MonoBehaviour:
   ID: 3
   healthToGive: 0
   manaToGive: 0
+  damageToGive: 0
+  speedToGive: 0
+  defenseToGive: 20

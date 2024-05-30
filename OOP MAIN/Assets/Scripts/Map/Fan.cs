@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Fan : MonoBehaviour
@@ -10,6 +11,7 @@ public class Fan : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerController.Instance.characterThrow(speed);
+        if(collision.CompareTag("Player"))
+            PlayerController.Instance.characterThrow(speed);
     }
 }

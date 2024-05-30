@@ -6,6 +6,7 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
 
+
     private void Awake()
     {
         if(instance == null)

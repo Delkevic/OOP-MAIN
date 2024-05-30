@@ -203,7 +203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c01f7a293883d3a408c2a84b25f48f27, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6c6c38c224b8e84e8fb5d5d4cb13822, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -308,3 +308,6 @@ MonoBehaviour:
   ID: 5
   healthToGive: 70
   manaToGive: 0
+  damageToGive: 0
+  speedToGive: 0
+  defenseToGive: 0

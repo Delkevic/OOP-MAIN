@@ -13,6 +13,8 @@ TagManager:
   - Boss
   - Weak Point
   - Ates
+  - arrow
+  - sword
   layers:
   - Default
   - TransparentFX

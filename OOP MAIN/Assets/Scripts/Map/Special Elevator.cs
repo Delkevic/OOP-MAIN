@@ -39,6 +39,7 @@ public class SpecialElevator : MonoBehaviour
     {
         if (knt)
         {
+            rb.isKinematic = false;
             speed = realSpeed;
             knt = false;
         }
