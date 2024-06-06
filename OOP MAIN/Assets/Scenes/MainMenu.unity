@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -635,7 +634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -16.590332, y: 7.681488}
+  m_AnchoredPosition: {x: -16.590332, y: 7.6815186}
   m_SizeDelta: {x: -1274.8452, y: -281.96313}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &373568761
@@ -1933,7 +1932,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000030518, y: -66.668}
+  m_AnchoredPosition: {x: 0.016094, y: -29}
   m_SizeDelta: {x: 581.6439, y: 132.8781}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1545030506
@@ -1969,7 +1968,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Kacak Games
+  m_Text: Emirtron
 --- !u!222 &1545030507
 CanvasRenderer:
   m_ObjectHideFlags: 0
